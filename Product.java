@@ -145,24 +145,27 @@ class OrderItem{
 	}
 }
 class Catalog{
-	ArrayList product=new ArrayList();
+	private ArrayList<Product> products=null;
 	
+	public Catalog()
+	{
+		this.products=new ArrayList<Product>();
+	}
 	public void addProduct(Product product)
 	{
-		this.product.add(product);
+		this.products.add(product);
 	}
 	public ArrayList<Product> iterator()
 	{
-		return this.product;
+		return this.products;
 	}
 	public Product getProduct(String code)
 	{
-		for(int i=0;i<this.product.size();i++)
+		for(Product i:products)
 		{
-			Product[] product=(Product[]) this.product.toArray(new Product[this.product.size()]);
-			if(product[i].getCode()==code)
+			if(i.equals(code))
 			{
-				return (Product) this.product.get(i);
+				return i;
 			}
 			else
 			{
@@ -173,6 +176,54 @@ class Catalog{
 	}
 	public int getNumberOfProducts()
 	{
-		return this.product.size();
+		return this.products.size();
+	}
+}
+class Order{
+	private ArrayList<OrderItem> items=null;
+	
+	public Order()
+	{
+		this.items=new ArrayList<OrderItem>();
+	}
+	public void addItem(OrderItem orderItem)
+	{
+		this.items.add(orderItem);
+	}
+	public void removeItem(OrderItem orderItem)
+	{
+		this.items.remove(orderItem);
+	}
+	public ArrayList<OrderItem> iterator()
+	{
+		return this.items;
+	}
+	public OrderItem getItem(Product product)
+	{
+		for(OrderItem i:items)
+		{
+			if(i.equals(product))
+			{
+				return i;
+			}
+			else
+			{
+				return null;
+			}
+		}
+		return null;
+	}
+	public int getNumberOfItems()
+	{
+		return items.size();
+	}
+	public double getTotalCost()
+	{
+		double sum=0;
+		for(OrderItem i:items)
+		{			
+			sum=sum+(i.getQuantity()*i.getValue());
+		}
+		return sum;
 	}
 }
