@@ -227,3 +227,23 @@ class Order{
 		return sum;
 	}
 }
+class Sales{
+	private ArrayList<Order> orders=null;
+	
+	public Sales()
+	{
+		this.orders=new ArrayList<Order>();
+	}
+	public void addOrder(Order order)
+	{
+		this.orders.add(order);
+	}
+	public ArrayList<Order> iterator()
+	{
+		return this.orders;
+	}
+	public int getNumberOfOrders()
+	{
+		return this.orders.size();
+	}
+}
