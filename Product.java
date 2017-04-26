@@ -1,6 +1,7 @@
 package สตั้าป;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Product {
 	private String code;
@@ -155,21 +156,17 @@ class Catalog{
 	{
 		this.products.add(product);
 	}
-	public ArrayList<Product> iterator()
+	public Iterator<Product> iterator()
 	{
-		return this.products;
+		return this.products.iterator();
 	}
 	public Product getProduct(String code)
 	{
 		for(Product i:products)
 		{
-			if(i.equals(code))
+			if(i.getCode()==code)
 			{
 				return i;
-			}
-			else
-			{
-				return null;
 			}
 		}
 		return null;
@@ -194,21 +191,17 @@ class Order{
 	{
 		this.items.remove(orderItem);
 	}
-	public ArrayList<OrderItem> iterator()
+	public Iterator<OrderItem> iterator()
 	{
-		return this.items;
+		return this.items.iterator();
 	}
 	public OrderItem getItem(Product product)
 	{
 		for(OrderItem i:items)
 		{
-			if(i.equals(product))
+			if(i.getProduct().equals(product))
 			{
 				return i;
-			}
-			else
-			{
-				return null;
 			}
 		}
 		return null;
@@ -222,7 +215,7 @@ class Order{
 		double sum=0;
 		for(OrderItem i:items)
 		{			
-			sum=sum+(i.getQuantity()*i.getValue());
+			sum=sum+i.getValue();
 		}
 		return sum;
 	}
@@ -238,12 +231,34 @@ class Sales{
 	{
 		this.orders.add(order);
 	}
-	public ArrayList<Order> iterator()
+	public Iterator<Order> iterator()
 	{
-		return this.orders;
+		return this.orders.iterator();
 	}
 	public int getNumberOfOrders()
 	{
 		return this.orders.size();
+	}
+}
+class GourmetCoffee{
+	private Catalog catalog;
+	private Order currentOrder;
+	private Sales sales;
+	
+	public void GourmetCoffeeSolution(){}
+	public void displayCatalog(){}
+	public void displayProductInfo(){}
+	public void displayOrder(){}
+	public void addModifyProduct(){}
+	public void removeProduct(){}
+	public void saleOrder(){}
+	public void displayOrdersSold(){}
+	public void displayNumberOfOrders(Product product)
+	{
+		
+	}
+	public void displayTotalQuantityOfProducts()
+	{
+		
 	}
 }
